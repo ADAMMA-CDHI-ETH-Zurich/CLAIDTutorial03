@@ -1,0 +1,8 @@
+<root>
+    <Module class = "Tutorial::PublisherModule">
+        <periodInMilliseconds>0</periodInMilliseconds>
+    </Module>
+
+    <Module class = "Tutorial::SubscriberModule">
+    </Module>
+</root>

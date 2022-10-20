@@ -1,29 +1,51 @@
-#include "PublisherModule.hpp"
+#include "CLAID.hpp"
 
-namespace HelloWorld
+namespace Tutorial
 {
-    void PublisherModule::initialize()
+    class PublisherModule : public claid::Module
     {
-        ctr = 0;
+        DECLARE_MODULE(PublisherModule)
 
-        // When publishing, we need to specify a name or ID of the channel.
-        // This name can be anything and is used to identify the Channel.
-        // Subscribers need to provide the exact same name, if they want to access data from this channel.
-        stringChannel = publish<std::string>("PersonChannel");
+        private:
 
-        // PeriodicSenderFunction is just a name we assign to the periodic function.
-        // This name can be used to stop the periodic function at a later point.
-        // periodInMilliseconds specifies at what rate the function shall be called.
-        registerPeriodicFunction("PeriodicSenderFunction", &PublisherModule::periodicSenderFunction, this, periodInMilliseconds);
-    }
+            // Channel we will use to send data.
+            claid::Channel<std::string> stringChannel;
 
-    void PublisherModule::periodicSenderFunction()
-    {
-        std::string str = "This is the " + std::to_string(ctr) + "th string we send";
-        stringChannel.post(str);
+            // Rate at which periodic function will be called
+            int periodInMilliseconds; 
 
-        ctr++;
-    }       
+            // Number of strings we have sent already.
+            int ctr; 
+
+            void initialize()
+            {
+                ctr = 0;
+
+                // When publishing, we need to specify a name or ID of the channel.
+                // This name can be anything and is used to identify the Channel.
+                // Subscribers need to provide the exact same name, 
+                // if they want to access data from this channel.
+                stringChannel = publish<std::string>("StringChannel");
+
+                // PeriodicSenderFunction is just a name we assign to the periodic function.
+                // This name can be used to stop the periodic function at a later point.
+                // periodInMilliseconds specifies at what rate the function shall be called.
+                registerPeriodicFunction("PeriodicSenderFunction",
+                     &PublisherModule::periodicSenderFunction, this, periodInMilliseconds);
+            }
+
+            void periodicSenderFunction()
+            {
+                std::string str = "This is the " + std::to_string(ctr) + "th string we send";
+                stringChannel.post(str);
+
+                ctr++;
+            }    
+
+        public:
+            Reflect(PublisherModule,
+                reflectMember(periodInMilliseconds);
+            )
+    };   
 }
-
-REGISTER_MODULE(HelloWorld::PublisherModule)
+REGISTER_MODULE(Tutorial::PublisherModule)

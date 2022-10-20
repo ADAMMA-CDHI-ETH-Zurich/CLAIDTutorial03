@@ -1,0 +1,9 @@
+<root>
+    <Module class = "Tutorial::SubscriberModule">
+    
+    </Module>   
+
+    <Module class="claid::Network::NetworkServerModule">
+        <Port>1337</Port>
+    </Module>
+</root>
