@@ -15,6 +15,6 @@ int main(int argc, char** argv)
         exit(0);
     }
 
-    CLAID_RUNTIME->loadFromXML("Config/TutorialConfig.xml");
+    CLAID_RUNTIME->loadFromXML(configPath);
     CLAID_RUNTIME->start();
 }
