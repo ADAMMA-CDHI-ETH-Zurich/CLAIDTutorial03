@@ -1,6 +1,6 @@
 <root>
     <Module class = "Tutorial::PublisherModule">
-        <periodInMilliseconds>0</periodInMilliseconds>
+        <periodInMilliseconds>1</periodInMilliseconds>
     </Module>
 
     <Module class = "Tutorial::SubscriberModule">

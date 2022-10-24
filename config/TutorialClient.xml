@@ -1,6 +1,6 @@
 <root>
     <Module class = "Tutorial::PublisherModule">
-        <periodInMilliseconds>0</periodInMilliseconds>
+        <periodInMilliseconds>500</periodInMilliseconds>
     </Module>
 
     <Module class = "claid::Network::NetworkClientModule">

@@ -15,12 +15,10 @@ namespace Tutorial
             int periodInMilliseconds; 
 
             // Number of strings we have sent already.
-            int ctr; 
+            int ctr = 0; 
 
             void initialize()
             {
-                ctr = 0;
-
                 // When publishing, we need to specify a name or ID of the channel.
                 // This name can be anything and is used to identify the Channel.
                 // Subscribers need to provide the exact same name, 
